@@ -1,21 +1,21 @@
-package com.mini.jonghams.ViewPager;
+package com.mini.jonghams.ViewPager
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.mini.jonghams.R
 import com.mini.jonghams.model.SliderItem
+import kotlinx.android.synthetic.main.layout_item_slide.view.*
 
 class SlideViewPagerAdapter(private var context: Context, private var itemList: List<SliderItem>) :
     PagerAdapter() {
-    private var mLayoutInflater: LayoutInflater =
-        this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private var pos = 0
+    private var slidePosition = 0
 
     override fun getCount(): Int {
         return Integer.MAX_VALUE
@@ -23,26 +23,32 @@ class SlideViewPagerAdapter(private var context: Context, private var itemList: 
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val holder = ViewHolder()
-        val itemView = mLayoutInflater.inflate(R.layout.adapter_view_pager, container, false)
-        holder.itemImage = itemView.findViewById(R.id.img_slider) as ImageView
+        val mLayoutInflater =
+            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val itemView = mLayoutInflater.inflate(R.layout.layout_item_slide, container, false)
+        holder.itemImage = itemView.img_slider as ImageView
+        holder.name = itemView.item_name as TextView
+        holder.price = itemView.item_price as TextView
 
-        if (pos > this.itemList.size - 1)
-            pos = 0
+        if (slidePosition > this.itemList.size - 1)
+            slidePosition = 0
 
-        holder.sliderItem = this.itemList[pos]
-        holder.itemImage.setImageDrawable(context.getDrawable(holder.sliderItem.imageDrawable))
-
+        holder.sliderItem = itemList[slidePosition]
+        holder.itemImage.setImageDrawable(context.getDrawable(holder.sliderItem.drawable))
+        holder.name.text = itemList[slidePosition].name
+        holder.price.text = itemList[slidePosition].price.toString()
         (container as ViewPager).addView(itemView)
-
         holder.itemImage.scaleType = ImageView.ScaleType.FIT_XY
 
-        pos++
+        slidePosition++
         return itemView
     }
 
     private class ViewHolder {
         lateinit var sliderItem: SliderItem
         lateinit var itemImage: ImageView
+        lateinit var name: TextView
+        lateinit var price: TextView
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {

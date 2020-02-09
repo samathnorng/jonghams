@@ -27,17 +27,14 @@ class CommentAdapter(private val itemCallback: CommentClickListener?) :
         ) as LayoutItemCommentBinding
 
         binding.callback = itemCallback
-
         return UserViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val item: User? = itemList?.get(position)
-        println("Testing url2: " + item!!.imageUrl)
         holder.binding.data = item
         holder.binding.userImage.loadSrc(item!!.imageUrl)
         holder.binding.executePendingBindings()
-
     }
 
     override fun getItemCount(): Int {

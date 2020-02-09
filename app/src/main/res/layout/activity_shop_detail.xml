@@ -32,7 +32,7 @@
                     android:id="@+id/htab_header"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:background="@mipmap/header"
+                    android:background="@mipmap/shop_cover"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax" />
@@ -53,25 +53,14 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="3.8 km"
-                        android:textColor="@color/black" />
-                    <!-- <com.google.android.material.button.MaterialButton
-                         android:id="@+id/working_time_btn"
-                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                     <TextView
+                         android:padding="5dp"
                          android:layout_width="wrap_content"
-                         android:layout_height="50dp"
-                         android:layout_marginLeft="5dp"
-                         android:layout_marginRight="5dp"
-                         android:text="@{config.workingTime}"
-                         android:textAlignment="center"
-                         android:textAllCaps="false"
-                         android:textColor="@color/black" />-->
-
+                         android:layout_height="wrap_content"
+                         android:layout_alignParentEnd="true"
+                         android:background="@drawable/background_border"
+                         android:text="3.8 km"
+                         android:textColor="@color/black" />
 
                 </RelativeLayout>
 
@@ -105,11 +94,12 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="Open Now"
-                        android:textColor="#1CE407" />
+                        android:text="@string/open_now"
+                        android:textColor="@color/color_green_light" />
 
 
                 </RelativeLayout>
@@ -199,8 +189,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 app:tabBackground="@drawable/tab_border"
-                app:tabIndicatorColor="@color/colorAccent"
-                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabIndicatorColor="@color/colorPrimaryDark"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
                 app:tabTextColor="@color/black" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -239,7 +229,7 @@
             android:backgroundTint="@android:color/white"
             android:onClick="onMapView"
             android:text="{fa-map-marker 20sp} \u0020 Map"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimaryDark" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

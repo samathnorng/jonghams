@@ -2,4 +2,6 @@
     <string name="app_name">Jonghams</string>
     <string name="my_phone_num">087 66 82 66</string>
     <string name="title_activity_maps">Map</string>
+    <string name="open_now">Open Now</string>
+    <string name="closed">Closed</string>
 </resources>

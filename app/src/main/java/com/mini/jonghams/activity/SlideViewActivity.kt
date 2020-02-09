@@ -1,7 +1,7 @@
 package com.mini.jonghams.activity
 
 import android.os.Bundle
-import android.util.Log
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -9,69 +9,45 @@ import androidx.viewpager.widget.ViewPager
 import com.mini.jonghams.R
 import com.mini.jonghams.ViewPager.SlideViewPagerAdapter
 import com.mini.jonghams.model.SliderItem
+import com.mini.jonghams.viewModel.SlideViewModel
 import kotlinx.android.synthetic.main.activity_slide_view.*
-import java.util.*
+import org.koin.android.ext.android.inject
 
 class SlideViewActivity : AppCompatActivity() {
-    private var TAG = SlideViewActivity::class.java.simpleName
-    lateinit var sliderItems: MutableList<SliderItem>
-    internal var firstCurrentItem = 1
-    var activeSelected = 1
-    internal var itemPosition = 0
-
+    private val viewModel: SlideViewModel by inject()
+    private var sliderItems = emptyList<SliderItem>()
+    private var firstCurrentItem = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_view)
+        setSupportActionBar(toolbar)
+        if (supportActionBar != null) supportActionBar!!.title = "Menus"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        sliderItems = viewModel.slideList
 
-        try {
-            sliderItems = ArrayList()
-            sliderItems.add(SliderItem(1, R.drawable.food_1))
-            sliderItems.add(SliderItem(1, R.drawable.food_2))
-            sliderItems.add(SliderItem(1, R.drawable.food_3))
-            sliderItems.add(SliderItem(1, R.drawable.food_4))
-            sliderItems.add(SliderItem(1, R.drawable.food_5))
-
-            val adapter = SlideViewPagerAdapter(this, sliderItems)
-            view_pager.adapter = adapter
-            view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                }
-
-                override fun onPageSelected(position: Int) {
-                    println("Testing pos: " + position)
-                    if (itemPosition > position) {
-                        if (activeSelected == 0) {
-                            activeSelected = sliderItems.size - 1
-                        } else {
-                            activeSelected--
-                        }
-                    } else {
-                        if (activeSelected >= sliderItems.size - 1) {
-                            activeSelected = 0
-                        } else {
-                            activeSelected++
-                        }
-                    }
-                    itemPosition = position
-                    setPageIndicator(activeSelected)
-                }
-
-                override fun onPageScrollStateChanged(state: Int) {}
-            })
-
-            for (i in sliderItems.indices) {
-                val view = ImageView(this)
-                view.setImageResource(R.drawable.ic_circle_blck)
-                lyt_page_indicator.addView(view)
+        val adapter = SlideViewPagerAdapter(this, sliderItems)
+        view_pager.adapter = adapter
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
-            setPageIndicator(firstCurrentItem)
-        } catch (ex: Exception) {
-            Log.e(TAG, ex.message)
+
+            override fun onPageSelected(position: Int) {
+                setPageIndicator(viewModel.activeSelect(position))
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+
+        for (i in sliderItems.indices) {
+            val view = ImageView(this)
+            view.setImageResource(R.drawable.ic_circle_blck)
+            lyt_page_indicator.addView(view)
         }
+        setPageIndicator(firstCurrentItem)
     }
 
     fun setPageIndicator(position: Int) {
@@ -90,5 +66,15 @@ class SlideViewActivity : AppCompatActivity() {
                 imageView.setImageResource(R.drawable.ic_circle_white)
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

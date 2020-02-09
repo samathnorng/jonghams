@@ -17,10 +17,6 @@ import org.koin.android.ext.android.inject
 
 class CommentFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CommentFragment()
-    }
-
     private val viewModel: CommentViewModel by inject()
     private lateinit var binding: RecyclerviewContainerBinding
     private lateinit var commentListAdapter: CommentAdapter
@@ -48,5 +44,4 @@ class CommentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         commentListAdapter.setListData(viewModel.commentList)
     }
-
 }

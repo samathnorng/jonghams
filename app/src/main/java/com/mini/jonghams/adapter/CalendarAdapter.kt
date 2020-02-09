@@ -13,7 +13,7 @@ import java.util.*
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
-    private var itemList: Array<String>? = null
+    private var itemList: Array<String> = emptyArray()
 
     fun setListData(list: Array<String>) {
         this.itemList = list
@@ -40,7 +40,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>
     }
 
     override fun getItemCount(): Int {
-        return itemList?.size ?: 0
+        return itemList.size
     }
 
     open class CalendarViewHolder(val binding: LayoutItemCalendarBinding) :

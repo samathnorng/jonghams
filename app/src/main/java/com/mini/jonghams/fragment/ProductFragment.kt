@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mini.jonghams.activity.SlideViewActivity
 import com.mini.jonghams.R
+import com.mini.jonghams.activity.SlideViewActivity
 import com.mini.jonghams.adapter.ProductAdapter
 import com.mini.jonghams.model.Product
 import com.mini.jonghams.screens.main.ProductClickListener
@@ -24,11 +24,7 @@ class ProductFragment : Fragment() {
 
     private val itemClickCallback = object : ProductClickListener {
         override fun onItemClick(item: Product) {
-            println("Testing item: $item")
-
-            val intent = Intent(context, SlideViewActivity::class.java).apply {
-                //  putExtra(EXTRA_MESSAGE, message)
-            }
+            val intent = Intent(context, SlideViewActivity::class.java)
             startActivity(intent)
         }
     }

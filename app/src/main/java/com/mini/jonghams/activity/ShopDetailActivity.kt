@@ -3,6 +3,7 @@ package com.mini.jonghams.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
@@ -23,6 +24,7 @@ import com.mini.jonghams.fragment.CalendarFragment
 import com.mini.jonghams.fragment.CommentFragment
 import com.mini.jonghams.fragment.ContactFragment
 import com.mini.jonghams.fragment.ProductFragment
+import com.mini.jonghams.utills.isOnWorkingTime
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
 
@@ -45,6 +47,7 @@ class ShopDetailActivity : AppCompatActivity() {
         if (supportActionBar != null)
             toolbar.setNavigationIcon(R.drawable.ic_arrow_left)
         supportActionBar!!.title = null
+        shopOpenStatus()
         setupViewPager(view_pager)
 
         with(tabs) {
@@ -57,15 +60,17 @@ class ShopDetailActivity : AppCompatActivity() {
             addOnTabSelectedListener(object : OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     view_pager.currentItem = tab.position
-                    val tabIconColor = ContextCompat.getColor(context,
-                        R.color.colorAccent
+                    val tabIconColor = ContextCompat.getColor(
+                        context,
+                        R.color.colorPrimaryDark
                     )
                     tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab) {
                     val tabIconColor =
-                        ContextCompat.getColor(context,
+                        ContextCompat.getColor(
+                            context,
                             R.color.black
                         )
                     tab.icon!!.setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN)
@@ -100,11 +105,11 @@ class ShopDetailActivity : AppCompatActivity() {
                 return true
             }
             R.id.action_like -> {
-                println("Testing like")
+                Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.action_edit -> {
-                println("Testing edit")
+                Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
                 return true
             }
 
@@ -116,12 +121,7 @@ class ShopDetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    companion object {
-        private val TAG = ShopDetailActivity::class.java.simpleName
-    }
-
-
-    fun shareToFacebook() {
+    private fun shareToFacebook() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
         intent.type = "text/plain"
@@ -131,9 +131,7 @@ class ShopDetailActivity : AppCompatActivity() {
             intent.setPackage("com.facebook.katana")
             startActivity(intent)
         } else {
-            Toast.makeText(
-                applicationContext, "No facebook app install", Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(applicationContext, "No facebook app install", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -189,5 +187,16 @@ class ShopDetailActivity : AppCompatActivity() {
         )
         intent.setPackage("com.google.android.apps.maps")
         startActivity(intent)
+    }
+
+    private fun shopOpenStatus() {
+        if (isOnWorkingTime(7, 9)) {
+            status.text = getString(R.string.open_now)
+            status.setTextColor(Color.parseColor("#1CE407"))
+        } else {
+            status.text = getString(R.string.closed)
+            status.setTextColor(Color.parseColor("#2E2D2D"))
+
+        }
     }
 }

@@ -33,11 +33,9 @@ class ProductAdapter(private val itemCallback: ProductClickListener?) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item: Product? = itemList?.get(position)
-        println("Testing url: " + item!!.imageUrl)
         holder.binding.data = item
         holder.binding.image.loadSrc(item!!.imageUrl)
         holder.binding.executePendingBindings()
-
     }
 
     override fun getItemCount(): Int {

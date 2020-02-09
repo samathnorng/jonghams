@@ -26,8 +26,6 @@ class ShopViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
     override fun getPageTitle(position: Int): CharSequence? {
         // return mFragmentTitleList[position]
-
         return null
     }
-
 }

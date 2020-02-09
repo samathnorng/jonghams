@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.mini.jonghams.model.Product
 
 class ProductViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
-
     var productList: MutableList<Product> = ArrayList()
 
     init {

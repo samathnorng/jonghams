@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="bg_light">#FAFAFA</color>
+    <color name="color_line_x">#c0c0c0</color>
+    <color name="color_line_y">#2E2D2D</color>
+    <color name="ripple_color">#45ABC9F8</color>
+
+
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="primary_500">#3F51B5</color>
+    <!--Indigo 700-->
+    <color name="primary_700">#303F9F</color>
+    <!--Pink 500-->
+    <color name="accent_500">#E91E63</color>
+</resources>

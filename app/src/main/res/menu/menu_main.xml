@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.suleiman.material.activities.TabsHeaderActivity">
+    <item
+        android:id="@+id/action_like"
+        android:icon="@drawable/ic_favorite"
+        android:orderInCategory="100"
+        android:title="Like"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_drawing"
+        android:orderInCategory="100"
+        android:title="Like"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share"
+        android:orderInCategory="100"
+        android:title="Like"
+        app:showAsAction="always" />
+</menu>

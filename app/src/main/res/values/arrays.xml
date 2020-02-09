@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="calendar">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <integer-array name="tabs_icon">
+        <item>@drawable/ic_shop_contact</item>
+        <item>@drawable/ic_shop_product</item>
+        <item>@drawable/ic_shop_calendar</item>
+        <item>@drawable/ic_shop_comment</item>
+    </integer-array>
+</resources>

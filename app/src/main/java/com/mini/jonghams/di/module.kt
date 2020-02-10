@@ -2,17 +2,17 @@ package com.mini.jonghams.di
 
 
 import com.mini.jonghams.viewModel.CommentViewModel
-import com.mini.jonghams.viewModel.ProductViewModel
-import com.mini.jonghams.viewModel.SlideViewModel
+import com.mini.jonghams.viewModel.FoodSlideViewModel
+import com.mini.jonghams.viewModel.FoodViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val dataModule = module {
-    viewModel { ProductViewModel() }
+    viewModel { FoodViewModel() }
 
     viewModel { CommentViewModel() }
 
-    viewModel { SlideViewModel() }
+    viewModel { FoodSlideViewModel() }
 
 }
 val myAppModule = listOf(dataModule)

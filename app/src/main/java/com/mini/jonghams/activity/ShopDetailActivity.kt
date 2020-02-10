@@ -23,7 +23,7 @@ import com.mini.jonghams.ViewPager.ShopViewPagerAdapter
 import com.mini.jonghams.fragment.CalendarFragment
 import com.mini.jonghams.fragment.CommentFragment
 import com.mini.jonghams.fragment.ContactFragment
-import com.mini.jonghams.fragment.ProductFragment
+import com.mini.jonghams.fragment.FoodFragment
 import com.mini.jonghams.utills.isOnWorkingTime
 import kotlinx.android.synthetic.main.activity_shop_detail.*
 
@@ -86,7 +86,7 @@ class ShopDetailActivity : AppCompatActivity() {
         val adapter = ShopViewPagerAdapter(supportFragmentManager)
         with(adapter) {
             addFrag(ContactFragment(), "Contact")
-            addFrag(ProductFragment(), "Product")
+            addFrag(FoodFragment(), "Product")
             addFrag(CalendarFragment(), "Calendar")
             addFrag(CommentFragment(), "Comment")
         }
@@ -190,13 +190,12 @@ class ShopDetailActivity : AppCompatActivity() {
     }
 
     private fun shopOpenStatus() {
-        if (isOnWorkingTime(7, 9)) {
+        if (isOnWorkingTime(7, 21)) {
             status.text = getString(R.string.open_now)
             status.setTextColor(Color.parseColor("#1CE407"))
         } else {
             status.text = getString(R.string.closed)
             status.setTextColor(Color.parseColor("#2E2D2D"))
-
         }
     }
 }

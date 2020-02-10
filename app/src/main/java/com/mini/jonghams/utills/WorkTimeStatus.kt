@@ -36,6 +36,5 @@ fun isOnWorkingTime(startTime: Int, endTime: Int): Boolean {
         0
     )
     var workingTimeStamp = workingCal.time.time
-
     return workingTimeStamp in startTimeStamp..endTimeStamp
 }

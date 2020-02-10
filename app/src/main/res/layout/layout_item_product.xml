@@ -6,11 +6,11 @@
 
         <variable
             name="data"
-            type="com.mini.jonghams.model.Product" />
+            type="com.mini.jonghams.model.Food" />
 
         <variable
             name="callback"
-            type="com.mini.jonghams.screens.main.ProductClickListener" />
+            type="com.mini.jonghams.screens.main.FoodClickListener" />
 
     </data>
 
